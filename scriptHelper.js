@@ -22,7 +22,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 function validateInput(testInput) {
     if (testInput === '') {
         return "Empty";
-    } else if (isNaN(testInput)) {
+    } else if (isNaN(Number(testInput))) {
         return "Not a Number";
     } else {
         return "Is a Number";
@@ -32,35 +32,25 @@ function validateInput(testInput) {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
     let valid = 0;
 
-    if (validateInput(pilot) === 'Empty') {
+    if(validateInput(pilot) === 'Empty' || validateInput(copilot) === 'Empty' || validateInput(fuelLevel) === 'Empty' || validateInput(cargoMass) === 'Empty') {
         alert("All fields are required!");
-        document.querySelector("#pilotStatus").innerHTML = `Pilot is not Ready`;
-    } else if(validateInput(pilot) !== 'Not a Number') {
+        return;
+    } else if (validateInput(pilot) !== 'Not a Number' || validateInput(copilot) !== 'Not a Number' || validateInput(fuelLevel) === 'Not a Number' || validateInput(cargoMass) === 'Not a Number') {
         alert("Make sure to enter valid information for each field!");
-        document.querySelector("#pilotStatus").innerHTML = `Pilot is not Ready`;
-    } else {
+
+    }
+
+    if (validateInput(pilot) === 'Not a Number') {
         valid++;
         document.querySelector("#pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
     }
 
-    if (validateInput(copilot) === 'Empty') {
-        alert("All fields are required!");
-        document.querySelector("#copilotStatus").innerHTML = `Co-pilot is not Ready`;
-    } else if(validateInput(copilot) !== 'Not a Number') {
-        alert("Make sure to enter valid information for each field!");
-        document.querySelector("#copilotStatus").innerHTML = `Co-pilot is not Ready`;
-    } else {
+    if (validateInput(copilot) === 'Not a Number') {
         valid++;
         document.querySelector("#copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`;
     }
 
-    if (validateInput(fuelLevel) === 'Empty') {
-        alert("All fields are required!");
-        document.querySelector("#fuelStatus").innerHTML = "Fuel level too low for launch"
-    } else if (validateInput(fuelLevel) === 'Not a Number') {
-        alert("Make sure to enter valid information for each field!");
-    } else if (fuelLevel < 10000 && validateInput(fuelLevel) === "Is a Number") {
-        alert("Fuel level too low for launch");
+    if (fuelLevel < 10000) {
         document.querySelector("#fuelStatus").innerHTML = "Fuel level too low for launch"
         document.querySelector("#launchStatus").innerHTML = "Shuttle Not Ready for Launch";
         document.querySelector("#launchStatus").style.color = "rgb(199, 37, 78)";
@@ -69,12 +59,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
         valid++;
     }
 
-    if (validateInput(cargoMass) === 'Empty') {
-        alert("All fields are required!");
-    } else if (validateInput(cargoMass) === 'Not a Number') {
-        alert("Make sure to enter valid information for each field!");
-    } else if (cargoMass > 10000 && validateInput(cargoMass) === 'Is a Number') {
-        alert("Cargo mass too heavy for launch");
+    if (cargoMass > 10000) {
         document.querySelector("#cargoStatus").innerHTML = "There is too much mass for the shuttle to take off"
         document.querySelector("#launchStatus").innerHTML = "Shuttle Not Ready for Launch";
         document.querySelector("#launchStatus").style.color = "rgb(199, 37, 78)";
