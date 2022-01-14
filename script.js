@@ -2,9 +2,10 @@
 window.addEventListener("load", function() {
 
     let listedPlanets;
-    document.querySelector("#faultyItems").style.visibility = "hidden";
+    const list = document.querySelector("#faultyItems");
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
     let listedPlanetsResponse = myFetch(); // Promise object
+    list.style.visibility = "hidden";
     console.log(listedPlanetsResponse);
     listedPlanetsResponse.then(planets => {
         console.log(planets);
@@ -15,14 +16,11 @@ window.addEventListener("load", function() {
         
         const form = document.getElementsByTagName("form")[0];
         form.addEventListener("submit", function (event) {
-           const list = document.querySelector("#faultyItems");
            const pilot = document.querySelector("#pilotName").value;
            const coPilot = document.querySelector("input[name='copilotName']").value;
            const fuelLevel = document.querySelector("input[name='fuelLevel']").value;
            const cargoMass = document.querySelector("input[name='cargoMass']").value;
            formSubmission(document, list, pilot, coPilot, fuelLevel, cargoMass);
-event.preventDefault();
-   
        });
     });
    
