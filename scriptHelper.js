@@ -57,13 +57,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
     if (validateInput(fuelLevel) === 'Empty') {
         alert("All fields are required!");
         document.querySelector("#fuelStatus").innerHTML = "Fuel level too low for launch"
+    } else if (validateInput(fuelLevel) === 'Not a Number') {
+        alert("Make sure to enter valid information for each field!");
     } else if (fuelLevel < 10000 && validateInput(fuelLevel) === "Is a Number") {
         alert("Fuel level too low for launch");
         document.querySelector("#fuelStatus").innerHTML = "Fuel level too low for launch"
         document.querySelector("#launchStatus").innerHTML = "Shuttle Not Ready for Launch";
         document.querySelector("#launchStatus").style.color = "rgb(199, 37, 78)";
-    } else if (validateInput(fuelLevel) === 'Not a Number') {
-        alert("Make sure to enter valid information for each field!");
     } else {
         document.querySelector("#fuelStatus").innerHTML = "Fuel level high enough for launch";
         valid++;
@@ -71,13 +71,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
 
     if (validateInput(cargoMass) === 'Empty') {
         alert("All fields are required!");
+    } else if (validateInput(cargoMass) === 'Not a Number') {
+        alert("Make sure to enter valid information for each field!");
     } else if (cargoMass > 10000 && validateInput(cargoMass) === 'Is a Number') {
         alert("Cargo mass too heavy for launch");
         document.querySelector("#cargoStatus").innerHTML = "There is too much mass for the shuttle to take off"
         document.querySelector("#launchStatus").innerHTML = "Shuttle Not Ready for Launch";
         document.querySelector("#launchStatus").style.color = "rgb(199, 37, 78)";
-    } else if (validateInput(cargoMass) === 'Not a Number') {
-        alert("Make sure to enter valid information for each field!");
     } else {
         document.querySelector("#cargoStatus").innerHTML = "Cargo mass low enough for launch"
         valid++;

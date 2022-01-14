@@ -21,6 +21,7 @@ window.addEventListener("load", function() {
            const fuelLevel = document.querySelector("input[name='fuelLevel']").value;
            const cargoMass = document.querySelector("input[name='cargoMass']").value;
            formSubmission(document, list, pilot, coPilot, fuelLevel, cargoMass);
+           event.preventDefault();
        });
     });
    
