@@ -60,7 +60,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
     }
 
     if (cargoMass > 10000) {
-        document.querySelector("#cargoStatus").innerHTML = "There is too much mass for the shuttle to take off"
+        document.querySelector("#cargoStatus").innerHTML = "Cargo mass too heavy for launch"
         document.querySelector("#launchStatus").innerHTML = "Shuttle Not Ready for Launch";
         document.querySelector("#launchStatus").style.color = "rgb(199, 37, 78)";
     } else {
